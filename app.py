@@ -5,32 +5,76 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-url = "https://www.imdb.com/chart/top?ref_=nv_mv_250"
-
-resp = requests.get(url)
-soup = BeautifulSoup(resp.text, features="lxml")
-llist = soup.find_all('td',{'class':'titleColumn'})
-
-
-        
-
 
 @app.route('/')
 def index():
 
-    aux = []
+    return render_template("index.html")
 
-    x = random.randint(1,200)
+@app.route("/horror")
+def horror():
+    url = "https://www.imdb.com/search/title?genres=horror&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.text, features="lxml")
 
-    for i in llist[:x]:  #??
-        for j in i.find_all('a'):
-            
-            print(j.text)
-            aux.append(j.text)
+    x = random.randint(0,49)
+    
+    #nombre
+    llist = soup.find_all('h3',{'class':'lister-item-header'})
+    nombre = llist[x].find('a').text
+    #rating
+    llist = soup.find_all('div',{'class':'inline-block ratings-imdb-rating'})
+    rating = llist[x].find('strong').text
+    
+    print(nombre,"\\\\", rating)
+
+    return render_template('result.html', nombre=nombre, rating=rating)
+
+@app.route("/action")
+def action():
+    url = "https://www.imdb.com/search/title?title_type=feature&num_votes=25000,&genres=action&sort=user_rating,desc"
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.text, features="lxml")
+    
+    x = random.randint(0,49)
+    
+    #nombre
+    llist = soup.find_all('h3',{'class':'lister-item-header'})
+    nombre = llist[x].find('a').text
+    #rating
+    llist = soup.find_all('div',{'class':'inline-block ratings-imdb-rating'})
+    rating = llist[x].find('strong').text
+    
+    print(nombre,"\\\\", rating)
+
+    return render_template('result.html', nombre=nombre, rating=rating)
+
+@app.route("/scifi")
+def scifi():
+    url = "https://www.imdb.com/search/title?genres=sci_fi&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.text, features="lxml")
+    
+    x = random.randint(0,49)
+    llist = []
+    tiempo = ""
+    #nombre
+    llist = soup.find_all('p',{'class':'text-muted'})
+    tiempo = llist[x].find('span',{'class':'runtime'}).text
+    #nombre
+    llist = soup.find_all('h3',{'class':'lister-item-header'})
+    nombre = llist[x].find('a').text
+    #rating
+    llist = soup.find_all('div',{'class':'inline-block ratings-imdb-rating'})
+    rating = llist[x].find('strong').text
+    
 
 
+    print(nombre,"\\\\", rating, "\\", tiempo)
 
-    return render_template('index.html', movie=aux[-1])
+    return render_template('result.html', nombre=nombre, rating=rating)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

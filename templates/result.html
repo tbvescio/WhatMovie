@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WhatMovie</title>
+</head>
+<body>
+    <a href=""><input type="button" value="Click to get a movie!"></a>
+
+    {% if nombre %}
+        <h1>{{nombre}}</h1>
+    {% endif %}
+
+    {% if rating %}
+        <h1>{{rating}} &#9733</h1>
+    {% endif %}
+    {% if metascore %}
+    <h1>Metascore: {{metascore}} &#9733</h1>
+    {% endif %}
+
+</body>
+</html>
