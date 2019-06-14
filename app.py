@@ -25,10 +25,17 @@ def horror():
     #rating
     llist = soup.find_all('div',{'class':'inline-block ratings-imdb-rating'})
     rating = llist[x].find('strong').text
-    
+    #duracion
+    llist = soup.find_all('span',{'class':'runtime'})
+    duracion = llist[x].text
+    #año
+    llist = soup.find_all('span',{'class':'lister-item-year'})   
+    anio = llist[x].text         
+
+
     print(nombre,"\\\\", rating)
 
-    return render_template('result.html', nombre=nombre, rating=rating)
+    return render_template('result.html', nombre=nombre, rating=rating, duracion=duracion, anio=anio)
 
 @app.route("/action")
 def action():
