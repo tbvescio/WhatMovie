@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>WhatMovie</title>
+    <title>WhatMovie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newstyles.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
-    <a href=""><input type="button" value="Click to get a movie!"></a>
 
-    {% if nombre %}
-        <h1>{{nombre}}</h1>
-    {% endif %}
+<ul>
+    <li><a href="/"">Home</a></li>
+    <li><a href="">Random!</a></li>
+</ul>
 
-    {% if rating %}
-        <h1>{{rating}} &#9733</h1>
-    {% endif %}
-    {% if metascore %}
-    <h1>Metascore: {{metascore}} &#9733</h1>
-    {% endif %}
-    {% if duracion %}
-    <h1>duracion: {{duracion}}</h1>
-    {% endif %}
-    {% if anio %}
-    <h1>Año: {{anio}} </h1>
-    {% endif %}
+    
+<div class="result">
+    <h1>{{nombre}}</h1>
+    <h1>Rating: {{rating}} &#9733</h1>
+    <h1>Duracion: {{duracion}}</h1>
 
+
+</div>
+    
+    
 </body>
 </html>
