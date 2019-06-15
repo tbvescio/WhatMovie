@@ -12,14 +12,27 @@ def index():
 
 @app.route('/<categoria>')
 def categoria(categoria):
-    url = 0
+
     if categoria == "horror":
         url = "https://www.imdb.com/search/title?genres=horror&sort=user_rating,desc&title_type=feature&num_votes=25000,"
     elif categoria == "action":
         url = "https://www.imdb.com/search/title?title_type=feature&num_votes=25000,&genres=action&sort=user_rating,desc"
     elif categoria == "scifi":
         url = "https://www.imdb.com/search/title?genres=sci_fi&sort=user_rating,desc&title_type=feature&num_votes=25000,"
-    
+    elif categoria == "aventura":
+        url = "https://www.imdb.com/search/title/?genres=adventure&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    elif categoria == "animacion":
+        url = "https://www.imdb.com/search/title/?genres=animation&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    elif categoria == "comedia":
+        url = "https://www.imdb.com/search/title/?genres=comedy&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    elif categoria == "drama":
+        url = "https://www.imdb.com/search/title/?genres=drama&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    elif categoria == "misterio":
+        url = "https://www.imdb.com/search/title/?genres=mystery&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+    elif categoria == "guerra":
+        url = "https://www.imdb.com/search/title/?genres=war&sort=user_rating,desc&title_type=feature&num_votes=25000,"
+
+
     if url != 0:
 
         resp = requests.get(url)
