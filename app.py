@@ -20,7 +20,7 @@ def categoria(categoria):
         url = "https://www.imdb.com/search/title?genres=sci_fi&sort=user_rating,desc&title_type=feature&num_votes=25000,"
     
     resp = requests.get(url)
-    soup = BeautifulSoup(resp.text, features="lxml")
+    soup = BeautifulSoup(resp.text, features="html.parser")
 
     x = random.randint(0,49)
     
